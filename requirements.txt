@@ -23,6 +23,7 @@ idna==2.10
 kiwisolver==1.4.5
 magic-filter==1.0.12
 matplotlib==3.9.0
+mplcyberpunk==0.7.1
 multidict==6.0.5
 numpy==1.26.4
 packaging==24.0

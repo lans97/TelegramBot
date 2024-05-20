@@ -4,6 +4,8 @@ from aiogram.filters import Filter, CommandStart
 from cdabot.menus import *
 from cdabot.routers import menu_router, msgEq
 
+import os
+
 # UI Handlers
 
 # Inicio de la interfaz principal
@@ -60,6 +62,8 @@ async def send_submenu_t(message: types.Message):
 # Definición de submenu "Resumen"
 @menu_router.message(msgEq("Menú inicial 🏠"))
 async def send_hogar(message: types.Message):
+    if os.path.exists("Descargables/reporte.csv"):
+        os.remove("Descargables/reporte.csv")
     await message.answer('¿Qué te apetece conocer? 🔮', reply_markup=menu_principal_inter.as_markup())
 
 # Definición de submenu "Musica"

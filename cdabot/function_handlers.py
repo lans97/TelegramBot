@@ -23,7 +23,7 @@ humedad = 3 # Humedad
 @func_router.message(msgEq('📚 Resumen'))
 async def resumen(message: Message):
     await message.answer("Calculando resumen...")
-    device = "IBERO2"
+    device = "IBEROA"
     result = analyze_environment(device)
     if result == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
@@ -34,11 +34,13 @@ async def resumen(message: Message):
 @func_router.message(msgEq('🚦 Categoria ICA'))
 async def categoria_ICA(message: Message):
     await message.answer("Calculando ICA...")
-    device = "METEORO1"
-    dato = categoria_aire_f("METEORO1")
+    device = "IBEROA"
+    dato = categoria_aire_f(device)
     if dato == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
     else:
+        image = FSInputFile('images/graph.png')
+        await message.answer_photo(photo=image)
         await message.answer(dato)
 
 # Actividad Temperatura Hoy
@@ -46,8 +48,8 @@ async def categoria_ICA(message: Message):
 async def temperatura_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", temperatura, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", temperatura, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -62,8 +64,8 @@ async def temperatura_hoy(message: Message):
 async def temperatura_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", temperatura, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", temperatura, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -78,8 +80,8 @@ async def temperatura_semanal(message: Message):
 async def humedad_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", humedad, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", humedad, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -94,8 +96,8 @@ async def humedad_hoy(message: Message):
 async def humedad_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", humedad, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", humedad, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -111,8 +113,8 @@ async def humedad_semanal(message: Message):
 async def pm2_5_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", pm25, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", pm25, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -128,8 +130,8 @@ async def pm2_5_hoy(message: Message):
 async def pm2_5_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", pm25, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", pm25, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -145,8 +147,8 @@ async def pm2_5_semanal(message: Message):
 async def pm10_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", pm10, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", pm10, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -162,8 +164,8 @@ async def pm10_hoy(message: Message):
 async def pm10_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", pm10, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", pm10, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -179,8 +181,8 @@ async def pm10_semanal(message: Message):
 async def o2_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", ozono, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", ozono, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -196,8 +198,8 @@ async def o2_hoy(message: Message):
 async def o2_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", ozono, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", ozono, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -213,8 +215,8 @@ async def o2_semanal(message: Message):
 async def co_hoy(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", co, 1)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", co, 1)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -230,8 +232,8 @@ async def co_hoy(message: Message):
 async def co_semanal(message: Message):
     await message.answer("Generando gráfica...")
     # Función para graficar
-    device = "IBERO2"
-    res = generar_grafica("IBERO2", co, 7)
+    device = "IBEROA"
+    res = generar_grafica("IBEROA", co, 7)
     if res == None:
         await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
         return
@@ -241,6 +243,13 @@ async def co_semanal(message: Message):
 
     # Se envía el valor máximo
     await message.answer(f"Valor más alto: {max_value} ppb")
+
+# Generar CSV
+@func_router.message(msgEq('📥 Descargar CSV'))
+async def gen_csv(message: Message):
+    await message.answer("Enviando último reporte...")
+    reporte = FSInputFile('Descargables/reporte.csv')
+    await message.answer_document(document=reporte)
 
 # Actividad musica loop
 @func_router.message(msgEq('🎧 Reproducir Música'))
