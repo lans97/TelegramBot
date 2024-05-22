@@ -18,6 +18,7 @@ ozono = 7  # Ozono
 co = 2  # CO
 temperatura = 12  # Temperatura
 humedad = 3 # Humedad
+radiacion = 27 #Radiacion
 
 # Actividad Resumen
 @func_router.message(msgEq('📚 Resumen'))
@@ -244,12 +245,72 @@ async def co_semanal(message: Message):
     # Se envía el valor máximo
     await message.answer(f"Valor más alto: {max_value} ppb")
 
+# Actividad Radiacion Hoy
+@func_router.message(msgEq('☀ Hoy'))
+async def co_hoy(message: Message):
+    await message.answer("Generando gráfica...")
+    # Función para graficar
+    device = "IBEROA"
+    res = generar_grafica("METEORO1", radiacion, 1)
+    if res == None:
+        await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
+        return
+    image_path, max_value = res
+    image = FSInputFile(image_path)
+    await message.answer_photo(photo=image)
+
+    # Se envía el valor máximo
+    await message.answer(f"Valor más alto: {max_value} W/m2")
+
+# Actividad Radiacion Semanal
+@func_router.message(msgEq('😎 Semanal'))
+async def co_semanal(message: Message):
+    await message.answer("Generando gráfica...")
+    # Función para graficar
+    device = "IBEROA"
+    res = generar_grafica("METEORO1", radiacion, 7)
+    if res == None:
+        await message.answer(f"Parece haber un error con el dispositivo {device}. Intenta más tarde")
+        return
+    image_path, max_value = res
+    image = FSInputFile(image_path)
+    await message.answer_photo(photo=image)
+
+    # Se envía el valor máximo
+    await message.answer(f"Valor más alto: {max_value} W/m2")
+
+# Actividad Rosa Hoy
+@func_router.message(msgEq('🪁 Hoy'))
+async def co_semanal(message: Message):
+    await message.answer("Generando gráfica...")
+    # Función para graficar
+    device = "IBEROA"
+    create_windrose_plot("METEORO1", 1)
+    image = FSInputFile(image_path)
+    await message.answer_photo(photo=image)
+
+# Actividad Rosa Hoy
+@func_router.message(msgEq('🪂 Semanal'))
+async def co_semanal(message: Message):
+    await message.answer("Generando gráfica...")
+    # Función para graficar
+    device = "IBEROA"
+    create_windrose_plot("METEORO1", 7)
+    image = FSInputFile(image_path)
+    await message.answer_photo(photo=image)
+
 # Generar CSV
 @func_router.message(msgEq('📥 Descargar CSV'))
 async def gen_csv(message: Message):
-    await message.answer("Enviando último reporte...")
-    reporte = FSInputFile('Descargables/reporte.csv')
-    await message.answer_document(document=reporte)
+    # Función para enviar descargable
+    files = sorted([f for f in os.listdir('Descargables') if f.endswith('.csv')], key=lambda x: os.path.getmtime(os.path.join('Descargables', x)))
+    if files:
+        await message.answer("Enviando último reporte...")
+        reporte = FSInputFile('Descargables/reporte.csv')
+        await message.answer_document(document=reporte)
+    else:
+         await message.answer("No ha generado ninguna solicitud. Elija algunas de las opciones que se encuentran en el menú. 🤖")
+    
 
 # Actividad musica loop
 @func_router.message(msgEq('🎧 Reproducir Música'))

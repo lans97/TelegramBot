@@ -56,8 +56,8 @@ submenu_lluvia_inter.adjust(1)
 
 # Creación del menú secundario "Viento"
 submenu_viento_inter = ReplyKeyboardBuilder()
-submenu_viento_inter.button(text='RV Hoy')
-submenu_viento_inter.button(text='RV Semanal')
+submenu_viento_inter.button(text='🪁 Hoy')
+submenu_viento_inter.button(text='🪂 Semanal')
 submenu_viento_inter.button(text='📥 Descargar CSV')
 submenu_viento_inter.button(text='Menú inicial 🏠')
 submenu_viento_inter.adjust(1)
@@ -65,8 +65,8 @@ submenu_viento_inter.adjust(1)
 
 # Creación del menú secundario "Radiación"
 submenu_rad_inter = ReplyKeyboardBuilder()
-submenu_rad_inter.button(text='Ra Hoy')
-submenu_rad_inter.button(text='Ra Semanal')
+submenu_rad_inter.button(text='☀ Hoy')
+submenu_rad_inter.button(text='😎 Semanal')
 submenu_rad_inter.button(text='📥 Descargar CSV')
 submenu_rad_inter.button(text='Menú inicial 🏠')
 submenu_rad_inter.adjust(1)
