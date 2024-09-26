@@ -7,7 +7,7 @@ from aiogram.enums import ParseMode
 import cdabot.menu_handlers as menu_handlers
 import cdabot.function_handlers as function_handlers
 
-API_TOKEN = '6660311208:AAFwADmatpbcsH-QQJlE_VAynsDIJQzqDiM'
+API_TOKEN = 'xxx'#Insertar llave
 dp = Dispatcher()
 
 menu_handlers.setup(dp)
